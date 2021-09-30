@@ -70,7 +70,7 @@ Tracing the program leads to the following sequence of operations:
 1. The `NOP +0` does nothing.
 2. The `ACC +1` increases the **accumulator** from `0` to `1`.
 3. The `JMP +4` sets the **program counter** to `6`.
-4. The `ACC +1` increases the **accumulator  from `1` to `2`.
+4. The `ACC +1` increases the **accumulator** from `1` to `2`.
 5. The `JMP -4` sets the **program counter** to `3`.
 6. The `ACC +3` increases the **accumulator** from `2` to `5`.
 7. The `JMP -3` sets the **program counter** to `1`.
