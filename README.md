@@ -8,7 +8,8 @@ Help [Tux] escape [Beastie]'s [jail] by completing the following challenges!
 
 - [Challenge 02: Firmware](challenge02): Tux needs to fix the console's **firmware**.
 
-- [Challenge 03: Packages](challenge03): Tux needs to build some **packages**.
+- [Challenge 03: Dependencies](challenge03): Tux needs to build determine
+  software **dependencies**.
 
 - [Challenge 04: Maze](challenge04): Tux needs to exit the **maze**.
 
