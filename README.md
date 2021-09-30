@@ -1,8 +1,8 @@
 # Control-Alt-Delete
 
-Help [Tux] escape [Beastie's] [jail]!
+Help [Tux] escape [Beastie's] [jail] by completing the following challenges!
 
-## Overview
+## Challenges 
 
 - [Challenge 01: Cipher](challenge01): Tux needs to get **root**.
 
@@ -36,3 +36,8 @@ For each challenge, you may do the following:
 Make sure to do you work in a **separate branch** (use the naming convention:
 `challengeXX-$short-description`) and make a **Pull Request** when you wish to
 have your contribution reviewed.
+
+
+[Tux]: https://en.wikipedia.org/wiki/Tux_(mascot)
+[jail]: https://en.wikipedia.org/wiki/FreeBSD_jail
+[Beastie]: https://en.wikipedia.org/wiki/BSD_Daemon
