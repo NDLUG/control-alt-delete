@@ -1,4 +1,6 @@
-# LUGtoberfest 2021: Control-Alt-Delete
+# Control-Alt-Delete
+
+Help [Tux] escape [Beastie's] [jail]!
 
 ## Overview
 
