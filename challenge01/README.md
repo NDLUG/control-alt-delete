@@ -15,7 +15,6 @@ console left in his container.  Fortunately for [Tux], [Beastie] is a bit old
 school and prone to forgetting things, so the daemon wrote down the account
 name and password on a sticky note next to the console:
 
-    :::text
     Username: XXXX
     Password: XXXX
 
@@ -28,7 +27,21 @@ Being a true [hacker], [Tux] scoffs at this [security through obscurity] and
 goes about decoding the account information in order to get access to the
 computing console.
 
-- *Part A*: What is the account name?
-- *Part B*: What is the account password?
+- **Part A**: What is the account name?
+- **Part B**: What is the account password?
+
+## Input
+
+You will be given the [Base 36] encoded information from the sticky note:
+
+    Username: XXXX
+    Password: XXXX
+
+## Output
+
+You should output the decoded information in the following format:
+
+    Username: ~decrypted~
+    Password: ~decrypted~
 
 [Base 36]: https://en.wikipedia.org/wiki/Base36
