@@ -1,0 +1,42 @@
+{
+ "jailbreak": [
+  "smuggler"
+ ],
+ "chroot": [
+  "smuggler",
+  "laughing",
+  "marooning"
+ ],
+ "leftpad": [
+  "smuggler"
+ ],
+ "sudo": [
+  "marooning",
+  "ethological",
+  "laughing"
+ ],
+ "figlet": [
+  "ethological"
+ ],
+ "cmatrix": [
+  "laughing",
+  "marooning"
+ ],
+ "cowsay": [
+  "smuggler"
+ ],
+ "smuggler": [
+  "laughing",
+  "ethological",
+  "marooning"
+ ],
+ "laughing": [
+  "ethological",
+  "marooning"
+ ],
+ "marooning": [
+  "encountering"
+ ],
+ "ethological": [],
+ "encountering": []
+}
