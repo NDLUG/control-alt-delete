@@ -15,8 +15,8 @@ console left in his container.  Fortunately for [Tux], [Beastie] is a bit old
 school and prone to forgetting things, so the daemon wrote down the account
 username and password on a sticky note next to the console:
 
-    Username: XXXX
-    Password: XXXX
+    Username: UQUFH
+    Password: CNUDLBWQ
 
 Of course, [Beastie] didn't record the information in plaintext (he is old, but
 no fool).  Instead the daemon encrypted the account information with a
@@ -40,8 +40,8 @@ a brief moment of panic, however, [Tux] releases the key can only be one thing:
 
 You will be given the encrypted information from the sticky note:
 
-    Username: XXXX
-    Password: XXXX
+    Username: UQUFH
+    Password: CNUDLBWQ
 
 ## Output
 
@@ -49,5 +49,8 @@ You should output the decrypted information in the following format:
 
     Username: ~decrypted~
     Password: ~decrypted~
+    
+**Note**: This is an old console, so all the letters in the username and
+password are expected to be *capitalized*.
 
 [Vigenere Cipher]: https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
