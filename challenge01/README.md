@@ -29,7 +29,7 @@ computing console.
 
 Before proceeding, however, [Tux] remembers that a [Vigenere Cipher] needs a
 **key** for proper decryption and one is not written on the sticky note.  After
-a brief moment of panic, however, [Tux] releases the key can only be one thing:
+a brief moment of panic, however, [Tux] realizes the key can only be one thing:
 
     UNIX
     
