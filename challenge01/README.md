@@ -53,4 +53,10 @@ You should output the decrypted information in the following format:
 **Note**: This is an old console, so all the letters in the username and
 password are expected to be *capitalized*.
 
+[Tux]: https://en.wikipedia.org/wiki/Tux_(mascot)
+[jail]: https://en.wikipedia.org/wiki/FreeBSD_jail
+[Beastie]: https://en.wikipedia.org/wiki/BSD_Daemon
+[hacktoberfest]: https://hacktoberfest.digitalocean.com/
 [Vigenere Cipher]: https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
+[hacker]: https://en.wikipedia.org/wiki/Hacker
+[security through obscurity]: https://en.wikipedia.org/wiki/Security_through_obscurity
