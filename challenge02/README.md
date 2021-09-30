@@ -94,7 +94,7 @@ at a time.
   executed for a second time?
   
     In the sample firmware above, the **accumulator** would have a value of `5`
-    before the emulator detected an **infinite loop*.
+    before the emulator detected an **infinite loop**.
     
 - **Part B**: Fix the [bootcode] by swapping one instruction at a time to
   determine: what is the value of the **accumulator** after the program
