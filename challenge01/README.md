@@ -13,35 +13,41 @@ stretches, and gets to work on escaping his container.
 His first step to escaping the [jail] is to get access to the old computing
 console left in his container.  Fortunately for [Tux], [Beastie] is a bit old
 school and prone to forgetting things, so the daemon wrote down the account
-name and password on a sticky note next to the console:
+username and password on a sticky note next to the console:
 
     Username: XXXX
     Password: XXXX
 
 Of course, [Beastie] didn't record the information in plaintext (he is old, but
-no fool).  Instead the daemon encoded the account information in [Base 36] to
-obscure the real values from casuals (like the consultants who try to convince
-him to switch to Windows).
+no fool).  Instead the daemon encrypted the account information with a
+[Vigenere Cipher] to obscure the real values from casuals (like the consultants
+who try to convince him to switch to Windows).  
 
 Being a true [hacker], [Tux] scoffs at this [security through obscurity] and
-goes about decoding the account information in order to get access to the
-computing console.
+goes about decrypting the account information in order to get access to the
+computing console.  
 
+Before proceeding, however, [Tux] remembers that a [Vigenere Cipher] needs a
+**key** for proper decryption and one is not written on the sticky note.  After
+a brief moment of panic, however, [Tux] releases the key can only be one thing:
+
+    UNIX
+    
 - **Part A**: What is the account name?
 - **Part B**: What is the account password?
 
 ## Input
 
-You will be given the [Base 36] encoded information from the sticky note:
+You will be given the encrypted information from the sticky note:
 
     Username: XXXX
     Password: XXXX
 
 ## Output
 
-You should output the decoded information in the following format:
+You should output the decrypted information in the following format:
 
     Username: ~decrypted~
     Password: ~decrypted~
 
-[Base 36]: https://en.wikipedia.org/wiki/Base36
+[Vigenere Cipher]: https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
