@@ -9,15 +9,16 @@ those packages wasn't too difficult, but it was tedious and [Tux] remembers why
 he gave up running [Gentoo].
 
 With the program compiled, [Tux] runs `jailbreak` on the computing console
-and... he is free!!!
+and... He is free!!!
 
 Except, as soon as he exits the [jail], he realizes he is in a deep and dark
 tunnel.  Peering out into the void, he realizes the tunnel is part of a big and
 complicated **maze** protected by a [WireGuard].
 
 Fortunately for [Tux], the [WireGuard] appears to be elsewhere and there
-happens to be a map of the maze.  Before [entering the void], [Tux] decides to
-analyze the map an chart out the **shortest path** through the tunnels.
+happens to be a map of the maze on the floor.  Before [entering the void],
+[Tux] decides to analyze the map an chart out the **shortest path** through the
+tunnels.
 
 The map [Tux] found is full of symbols that are arranged like this:
 
@@ -44,11 +45,12 @@ marks what [Tux] believes to be walls and thus impassable.
         w.w*www
         w..***x
         
-- **Part B*: As [Tux] looks into the darkness of the tunnel, he realizes that
+- **Part B**: As [Tux] looks into the darkness of the tunnel, he realizes that
   the `w` on the map are not walls, but wires!  He can pass those tiles but it
-  will take him twice as long since he has to use his trusty wirecutters to get
-  through them.  Assuming `w` denotes a wire, what is the least number of tiles
-  [Tux] must cross to exit the maze (including the starting and end tiles)?
+  will take him twice as long since he has to use his trusty wire cutters to
+  get through them.  Assuming `w` denotes a wire, what is the least number of
+  tiles [Tux] must cross to exit the maze (including the starting and end
+  tiles)?
   
     In the sample above, [Tux] would require `13` tiles as shown below:
     
