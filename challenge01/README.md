@@ -7,7 +7,7 @@
 was prone to lashing out at him.  
 
 It seems like [Beastie] has finally gotten revenge on [Tux] by trapping him in
-one of the daemon's infamous [jails].  Sighing, [Tux] cracks his fingers,
+one of the daemon's infamous [jail]s.  Sighing, [Tux] cracks his fingers,
 stretches, and gets to work on escaping his container.
 
 His first step to escaping the [jail] is to get access to the old computing
