@@ -76,7 +76,7 @@ def main():
     # console, and checking if it terminates.
     original_code = console.code[:]
     for instruction, (operation, argument) in enumerate(original_code):
-        if operation == 'nop':
+        if operation == 'acc':
             continue
 
         # Swap jmp and nop operations.
