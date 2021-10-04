@@ -4,16 +4,13 @@
 
 # Created by: Jose Rodriguez on 10/04/2021
 
-FILENAME="input.txt"
-SED="sed -nE "i
 KEY="UNIX"
 DECRYPTED1=''
 DECRYPTED2=''
 
 read_line(){
   ID=$1
-
-  A=$(cat $FILENAME | sed -nE "s/($ID: )([A-Z+])/\2/p")
+  A=$(read line ; echo $line | sed -nE "s/($ID: )([A-Z+])/\2/p")
   echo "$A"
 }
 
@@ -40,7 +37,7 @@ decrypt_loop(){
   DEC_STRING=$3
   j=0
   for i in $(seq 1 ${#IDLINE});do
-    j=$(echo "$j+1" | bc)
+    j=$(($j+1))
     if [[ $j -eq ${#KEY} ]]; then
       j=0
     fi 
