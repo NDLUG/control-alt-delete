@@ -4,7 +4,7 @@ Help [Tux] escape [Beastie]'s [jail] by completing the following challenges!
 
 ## Challenges 
 
-- [Challenge 00: Drinks](challenge00): Tux **drinks**.
+- [Challenge 00: Drinks](challenge00): Tux needs to **drink** less.
 
 - [Challenge 01: Cipher](challenge01): Tux needs to get **root**.
 
