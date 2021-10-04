@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 # Ruby solution by itspaulyg
 
 def decrypt(uname, pword, key)
@@ -30,14 +30,11 @@ def decrypt(uname, pword, key)
   return de_uname.join, de_pword.join
 end
 
-arr = Array.new
-
-File.open(ARGV[0]).each do |line|
-  arr.append(line.split(" ")[1].strip())
-end
+uname = gets.split(" ")[1].strip()
+pword = gets.split(" ")[1].strip()
 
 key = ["U", "N", "I", "X"]
 
-user, pw = decrypt arr[0], arr[1], key
+user, pw = decrypt uname, pword, key
 print "Username: ", user, "\n"
-print "Password: ", pw 
+print "Password: ", pw, "\n"
