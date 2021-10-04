@@ -4,6 +4,8 @@ Help [Tux] escape [Beastie]'s [jail] by completing the following challenges!
 
 ## Challenges 
 
+- [Challenge 00: Drinks](challenge00): Tux **drinks**.
+
 - [Challenge 01: Cipher](challenge01): Tux needs to get **root**.
 
 - [Challenge 02: Firmware](challenge02): Tux needs to fix the console's **firmware**.
