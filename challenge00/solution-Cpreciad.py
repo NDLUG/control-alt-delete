@@ -21,7 +21,6 @@ def count_min_steps(drinks):
 
             table[i+step] = min(table[i + step], table[i]+1)
 
-    #print(table)
     return table[n-1]
 
 def main():
