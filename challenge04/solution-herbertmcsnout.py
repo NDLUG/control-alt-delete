@@ -1,27 +1,54 @@
 #!/usr/bin/env python3
-
-from scipy.sparse import csr_matrix
-from scipy.sparse.csgraph import dijkstra
 import sys
 
-#def sort_insert(new_x, xs):
-#    lower = 0       # inclusive
-#    upper = len(xs) # exclusive
-#    while upper - lower > 1:
-#        mid = (lower + upper) // 2
-#        if new_x == xs[mid]:
-#            lower = mid
-#            upper = mid + 1
-#        elif new_x > xs[mid]:
-#            lower = mid + 1
-#        elif new_x < xs[mid]:
-#            upper = mid # TODO: +1?
-#    xs.insert(lower, new_x)
+class MinQueue:
+    def __init__(self, queue=None):
+        if queue: self.queue = sorted(queue, key=lambda x: x[1])
+        else: self.queue = []
 
-#def my_dijkstra(graph, src):
-#    dists = [float('inf') for _ in graph]
-#    dists[src] = 0
-#    
+    def insert(self, value, weight):
+        lower = 0               # inclusive
+        upper = len(self.queue) # exclusive
+        while upper - lower > 1:
+            mid = (lower + upper) // 2
+            if weight == self.queue[mid][1]:
+                lower = mid
+                upper = mid + 1
+            elif weight > self.queue[mid][1]:
+                lower = mid + 1
+            elif weight < self.queue[mid][1]:
+                upper = mid
+        self.queue.insert(lower, (value, weight))
+
+    def __bool__(self):
+        return bool(self.queue)
+
+    def pop(self):
+        return self.queue.pop(0)
+
+    def update(self, value, new_weight):
+        # TODO: This is not very efficient
+        for i, (old_val, old_weight) in enumerate(self.queue):
+            if old_val == value:
+                del self.queue[i]
+                self.insert(value, new_weight)
+                break
+
+def my_dijkstra(graph, src):
+    dists = [float('inf') for _ in graph]
+    dists[src] = 0
+    visited = [False for _ in graph]
+    queue = MinQueue([(v, dists[v]) for v in range(len(graph))])
+    while queue:
+        u, _ = queue.pop()
+        for v, w in enumerate(graph[u]):
+            if w:
+                alt = dists[u] + w
+                if alt < dists[v]:
+                    dists[v] = alt
+                    queue.update(v, alt)
+    return dists
+    
 
 def parse_maze(maze):
     graph = []
@@ -66,15 +93,11 @@ def make_edge_entry(row_a, col_a, wall_weight=0):
             if c: entry[get_abs_index(pos=pos_b)] = c
     return entry
 
-
 def make_edgegraph(wall_weight):
     return [make_edge_entry(row_a, col_a, wall_weight=wall_weight) for (row_a, col_a) in cartesian(range(rows), range(cols))]
 
 def compute_dist(edgegraph):
-    return int(dijkstra(csgraph=csr_matrix(edgegraph), directed=True, indices=get_abs_index(pos=src))[get_abs_index(pos=dst)]) + 1
+    return my_dijkstra(edgegraph, get_abs_index(pos=src))[get_abs_index(pos=dst)] + 1
 
-edgegraphA = make_edgegraph(0)
-edgegraphB = make_edgegraph(2)
-
-print("Part A:", compute_dist(edgegraphA))
-print("Part B:", compute_dist(edgegraphB))
+print("Part A:", compute_dist(make_edgegraph(0)))
+print("Part B:", compute_dist(make_edgegraph(2)))
