@@ -17,7 +17,8 @@ or `3` spaces away).
 The idea behind the game is to challenge the player to start with the first
 drink and go across the board following the rules above until they reach the
 last drink.  The player must drink all the beverages in all the spots they
-choose (including the first and last).
+choose (including the first and last). You also *MUST* drink the last drink!
+(i.e no drinking a large number to go past the end).
 
 Given that [Tux] is a bit of a light-weight, he is interested in determining
 the minimum number of drinks he would have to imbibe to get across the whole
