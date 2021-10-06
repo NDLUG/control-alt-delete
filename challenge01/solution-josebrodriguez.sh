@@ -1,12 +1,11 @@
 #!/bin/bash
 
 # solution-josebrodriguez.sh
-
 # Created by: Jose Rodriguez on 10/04/2021
 
 KEY="UNIX"
-DECRYPTED1=''
-DECRYPTED2=''
+DECRYPTED1=""
+DECRYPTED2=""
 
 read_line(){
   ID=$1
@@ -46,10 +45,14 @@ decrypt_loop(){
   echo $DEC_STRING
 }
 
+# Read input and decrypt the text
+
 USERLINE=$(read_line "Username")
 PASSLINE=$(read_line "Password")
 DECRYPTED1=$(decrypt_loop $KEY $USERLINE $DECRYPTED1)
 DECRYPTED2=$(decrypt_loop $KEY $PASSLINE $DECRYPTED2)
+
+# Output the result of decryption
 
 echo "Username: "$DECRYPTED1
 echo "Password: "$DECRYPTED2
