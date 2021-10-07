@@ -62,7 +62,7 @@ rl.on('line', input => {
       }
       drinkCounterB++;
     }
-    // console.log('Tux must drink at least ' + drinkCounterB + ' time' + ((drinkCounterB == 1) ? '' : 's') + '.');
+    // console.log('Tux must drink at least ' + drinkCounterB + ' time' + ((drinkCounterB === 1) ? '' : 's') + '.');
     console.log('Part B: ' + drinkCounterB);
     let boardDisplay = '';
     for (let i = 0; i < board.length; i++) {
@@ -83,7 +83,7 @@ function resolvePartialBoard(board, drinksSoFar, drinkPossibilities) {
   // base case??
 
   // console.log(board)
-  if (board.length == 0)
+  if (board.length === 0)
   drinkPossibilities.push(drinksSoFar+1)
   // always start with the first thing
   for (let i = 1; i <= board[0]; i++) {
