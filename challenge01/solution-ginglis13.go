@@ -65,7 +65,9 @@ func main() {
 
 	// Build table and decrypt.
 	m := build_vigenere_table()
+	fmt.Printf("Username: ")
 	decrypt_vigenere(username, m)
+	fmt.Printf("Password: ")
 	decrypt_vigenere(password, m)
 }
 
