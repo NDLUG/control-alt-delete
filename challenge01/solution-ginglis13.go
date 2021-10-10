@@ -63,7 +63,7 @@ func main() {
 	username := strings.Split(_username, " ")[1]
 	password := strings.Split(_password, " ")[1]
 
-	// Build table and decrypt
+	// Build table and decrypt.
 	m := build_vigenere_table()
 	decrypt_vigenere(username, m)
 	decrypt_vigenere(password, m)
