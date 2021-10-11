@@ -1,132 +1,133 @@
+import sys
 import json
-from typing import Any, Callable, Hashable, Iterable
 
-next_id = 0
+def read_input() -> dict:
+    raw = sys.stdin.read().strip()
+    return json.loads(raw)
+
+def visited_bfs(edges: dict, start) -> set:
+    # Return all nodes visited from BFS starting at start.
+    visited = set()
+    queue = [start]
+
+    while queue:
+        name = queue.pop()
+        visited.add(name)
+        for child in edges[name]:
+            if child not in visited:
+                queue.append(child)
+
+    return visited
+
+
+def remove_non_jb(edges: dict) -> dict:
+    # Remove edges that are not affiliated with 'jailbreak'.
+    visited = visited_bfs(edges, 'jailbreak')
+    return {k: v for k, v in edges.items() if k in visited}
+
+
 mapping = {}
+revmapp = {}
+next_id = 0
 
 
-def identify(item: Hashable) -> int:
-    global next_id, mapping
-    if item in mapping:
-        return mapping[item]
-    else:
-        mapping[item] = next_id
+def identify(token: str) -> int:
+    global mapping, revmapp, next_id
+    if token not in mapping:
+        mapping[token] = next_id
+        revmapp[next_id] = token
         next_id += 1
-        return mapping[item]
-
-
-def read_file(fname: str) -> dict:
-    with open(fname, 'r') as file:
-        return json.load(file)
+    return mapping[token]
 
 
 def deep_identify(data: dict) -> dict:
-    new_data = {}
-
-    # Map each item to a unique index.
-    for key in data:
-        new_data[identify(key)] = [
-            identify(item)
-            for item in data[key]
-        ]
-
-    return new_data
+    # Convert edges to integer identifiers.
+    return {
+        identify(token): [identify(t) for t in tokens]
+        for token, tokens in data.items()
+    }
 
 
-def to_adjacency_list(identified: dict) -> list:
-    global next_id
+def to_adj_list(data: dict) -> list:
+    global next_id  # Total number of nodes.
     return [
-        identified.get(i, [])
+        data.get(i, [])
         for i in range(next_id)
     ]
 
 
-def part_a(adj: list, jail_id: int) -> int:
-    visited = set()
-    queue: list = adj[jail_id].copy()
+def rev_adj_list(adj: list) -> list:
+    # Reverses an adjacency list.
+    rev_adj = [[] for _ in adj]  # Same number of nodes.
 
-    # Perform a tree traversal.
-    while queue:
-        dep = queue.pop()
-        if dep not in visited:
-            queue.extend(adj[dep])
-            visited.add(dep)
+    for node, children in enumerate(adj):
+        for child in children:
+            # Child now points towards parent.
+            rev_adj[child].append(node)
 
-    return len(visited)
+    return rev_adj
 
 
-def part_b(adj: list) -> int:
-    # Count the number of leaves.
-    for i, val in enumerate(adj):
-        if not val:
-            # name = [k for k, v in mapping.items() if v == i][0]
-            # print(i, name, 'depends on no-one')
-            pass
-        
-    return len([
-        1 for item in adj
-        if not item
-    ])
-
-
-def toposort(adj: list) -> list:
+def calc_indeg(adj: list) -> list:
+    # Calculate the in-degree for every node.
     indeg = [0] * len(adj)
 
-    # Find vertices with in-degree zero.
-    for llist in adj:
-        for num in llist:
-            indeg[num] += 1
+    for children in adj:
+        for child in children:
+            indeg[child] += 1
 
-    output = []
-    queue = [i for i, deg in enumerate(indeg) if deg == 0]
-
-    # Traverses all nodes in graph.
-    while queue:
-        i = queue.pop()
-        output.append(i)
-        for next in adj[i]:
-            indeg[next] -= 1
-            if indeg[next] == 0:
-                queue.append(next)
-
-    return output
+    return indeg
 
 
-def visualize(adj: list, topo: list):
-    global mapping
-    topo = topo.copy()
-    visited = set()
-    queue = [(topo.pop(0), '')]
-    while queue:
-        i, prefix = queue.pop()
-        if i not in visited:
-            name = [k for k, v in mapping.items() if v == i][0]
-            print(prefix, name, '*' if not adj[i] else '')
+def maxcon(adj: list) -> int:
+    # Simulates build on adj. list and returns maximum concurrency.
+    global revmapp  # To translate index to name for debugging purposes.
+    rev = rev_adj_list(adj)
+    indeg = calc_indeg(rev)
+    nodes = [i for i, deg in enumerate(indeg) if deg == 0]
+    assert nodes, "No source nodes found"
+    built = set()
 
-            # Uncomment to disallow duplicates.
-            # visited.add(i)
+    concur = 0
+    while nodes and len(built) != len(rev):
+        # We can build all the nodes at this level.
+        concur = max(len(nodes), concur)
 
-            # Find children that we haven't printed.
-            for next in adj[i]:
-                queue.append((next, prefix + '   '))
-        
-        # Refresh queue.
-        if not queue and topo:
-            queue.append((topo.pop(0), ''))
+        # Reduce in-degree of target nodes.
+        # print(f'Building {len(nodes)} packages')
+        nextnodes = []  # Keep track of next nodes to build.
+        for node in nodes:
+
+            # Ignore ones we've already built.
+            if node in built:
+                continue
+
+            # print(f'\tBuilding {revmapp[node]}')
+
+            children = rev[node]
+            for child in children:
+                indeg[child] -= 1
+                if indeg[child] == 0:
+                    nextnodes.append(child)
+
+        # Add nodes to built set.
+        for node in nodes:
+            built.add(node)
+
+        # Go onto the next iteration.
+        nodes = nextnodes
+
+    assert len(built) == len(rev), "Impossible to resolve dependencies"
+    return concur
 
 
-raw = read_file('input.txt')
-raw = deep_identify(raw)
-raw = to_adjacency_list(raw)
-jail_id = mapping['jailbreak']
+edges = read_input()
+edges = remove_non_jb(edges)  # Remove nodes outside of 'jailbreak' subtree.
+edges = deep_identify(edges)  # Replace string identifiers with integer ones.
+edges = to_adj_list(edges)  # Convert to an adjacency list.
 
-if True:
-    # Visualize the graph.
-    topo = toposort(raw)
-    # visualize(raw, topo)
-
-a = part_a(raw, jail_id)
+a = len(edges) - 1
 print('Number of Dependencies:', a)
 
-b = part_b(raw)
+b = maxcon(edges)
 print('Maximum Concurrency:', b)
