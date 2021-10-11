@@ -125,14 +125,17 @@ int ic_exec(IntCode *ic, int inst)
  */
 bool ic_run(IntCode *ic)
 {
-    assert(ic->length > 0);
+    if (ic->length <= 0)
+    {
+        return true;
+    }
+    
     ic_reset(ic);
 
     bool noloop = true;
 
     bool *visited = calloc(ic->length, sizeof(bool));
     assert(visited); // Check result of calloc.
-    assert(visited[0] == false);
 
     int inst;
     while ((inst = ic_fetch(ic)) != -1)
