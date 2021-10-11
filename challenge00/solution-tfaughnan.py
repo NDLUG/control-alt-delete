@@ -1,0 +1,1 @@
+A=lambda b:1+int(len(b)>1) if b[0]>len(b)-2 else 1+min([A(s) for s in [b[i+1:] for i in range(b[0])]]);x=list(map(int,input().split()));print(f'Part A: {A(x)}\nPart B: {1+int(len(x)>1)+list(filter(lambda f:f[1]>=len(x)-1,enumerate([sum(sorted(x,reverse=1)[:i+1]) for i in range(len(x))])))[0][0]}')
