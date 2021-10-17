@@ -1,24 +1,28 @@
 #!/usr/bin/env python3
 import sys
 
+class MinQElem:
+    def __init__(self, value, weight):
+        self.value = value
+        self.weight = weight
+        
+    def __lt__(self, other): return self.weight < other
+    def __gt__(self, other): return self.weight > other
+    def __eq__(self, other): return self.weight == other
+    def __ge__(self, other): return self.weight >= other
+    def __le__(self, other): return self.weight <= other
+
+    def __str__(self): return str((self.value, self.weight))
+    def __repr__(self): return repr((self.value, self.weight))
+
+
 class MinQueue:
     def __init__(self, queue=None):
-        if queue: self.queue = sorted(queue, key=lambda x: x[1])
-        else: self.queue = []
+        self.queue = sorted(queue) if queue else []
 
-    def insert(self, value, weight):
-        lower = 0               # inclusive
-        upper = len(self.queue) # exclusive
-        while upper - lower > 1:
-            mid = (lower + upper) // 2
-            if weight == self.queue[mid][1]:
-                lower = mid
-                upper = mid + 1
-            elif weight > self.queue[mid][1]:
-                lower = mid + 1
-            elif weight < self.queue[mid][1]:
-                upper = mid
-        self.queue.insert(lower, (value, weight))
+    def insert(self, x):
+        i = self.indexof(x.weight)
+        self.queue.insert(i, x)
 
     def __bool__(self):
         return bool(self.queue)
@@ -26,28 +30,59 @@ class MinQueue:
     def pop(self):
         return self.queue.pop(0)
 
-    def update(self, value, new_weight):
-        # TODO: This is not very efficient
-        for i, (old_val, old_weight) in enumerate(self.queue):
-            if old_val == value:
-                del self.queue[i]
-                self.insert(value, new_weight)
-                break
+    def indexof(self, x):
+        lower = 0               # inclusive
+        upper = len(self.queue) # exclusive
+        while upper - lower > 1:
+            mid = (lower + upper) // 2
+            if x == self.queue[mid]:
+                lower = mid
+                upper = mid + 1
+            elif x > self.queue[mid]:
+                lower = mid + 1
+            elif x < self.queue[mid]:
+                upper = mid
+        if lower < len(self.queue) and self.queue[lower] < x:
+            lower += 1
+
+        if isinstance(x, MinQElem):
+            # Now, if there are multiple elems with same weight, pick one with correct value
+            # Search backwards from lower (inclusive)
+            i = lower
+            while i >= 0 and self.queue[i] == x:
+                if self.queue[i].value == x.value:
+                    return i
+                i -= 1
+    
+            # Search forwards from lower (exlusive)
+            i = lower + 1
+            while i < len(self.queue) and self.queue[i] == x:
+                if self.queue[i].value == x.value:
+                    return i
+                i += 1
+        else:
+            return lower
+
+    def update(self, old, new):
+        i = self.indexof(old)
+        del self.queue[i]
+        self.insert(new)
 
 def my_dijkstra(graph, src):
-    dists = [float('inf') for _ in graph]
-    dists[src] = 0
-    visited = [False for _ in graph]
-    queue = MinQueue([(v, dists[v]) for v in range(len(graph))])
+    dists = [MinQElem(v, 0 if v == src else float('inf')) for v in range(len(graph))]
+    visited = [False for _ in dists]
+    queue = MinQueue(dists)
     while queue:
-        u, _ = queue.pop()
-        for v, w in enumerate(graph[u]):
-            if w:
-                alt = dists[u] + w
-                if alt < dists[v]:
-                    dists[v] = alt
-                    queue.update(v, alt)
-    return dists
+        u = queue.pop()
+        visited[u.value] = True
+        for v_i, u2v in enumerate(graph[u.value]):
+            if 0 < u2v < float('inf') and not visited[v_i]:
+                v = dists[v_i]
+                v_alt = MinQElem(v_i, u.weight + u2v)
+                if v_alt < v:
+                    queue.update(v, v_alt)
+                    v.weight = v_alt.weight
+    return [v.weight for v in dists]
     
 
 def parse_maze(maze):
