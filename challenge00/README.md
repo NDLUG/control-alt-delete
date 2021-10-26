@@ -1,7 +1,11 @@
 # Challenge 00: Drinks (Prequel)
 
 To celebrate [Hacktoberfest], [Tux] decided to go to the pub with his friend
-[Beastie].  Because [Tux] is a bit of a light-weight, [Beastie] likes to bully
+[Beastie].  
+
+![bar scene](ctrl-alt-del-challenge00-scene.jpg)
+
+Because [Tux] is a bit of a light-weight, [Beastie] likes to bully
 the penguin by making [Tux] play the following drinking game:
 
 Suppose there is a series of drinks arranged on a board as follows:
@@ -9,10 +13,13 @@ Suppose there is a series of drinks arranged on a board as follows:
     1 3 7 4 2
     
 Each number corresponds to a drink and indicates the maximum relative number of
-spots on the board from which you can choose your next drink.  For instance,
-beginning at the first drink `1`, you can only choose the next drink, `3`.
-From `3`, however, you can choose either `7`, `4`, or `2` (that is, `1`, `2`,
-or `3` spaces away).
+spots on the board from which you can choose your next drink.  
+
+![board game](board-game.jpg)
+
+For instance, beginning at the first drink `1`, you can only choose the next 
+drink, `3`. From `3`, however, you can choose either `7`, `4`, or `2` (that is, 
+`1`, `2`, or `3` spaces away).
 
 The idea behind the game is to challenge the player to start with the first
 drink and go across the board following the rules above until they reach the
