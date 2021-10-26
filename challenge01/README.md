@@ -10,6 +10,8 @@ It seems like [Beastie] has finally gotten revenge on [Tux] by trapping him in
 one of the daemon's infamous [jail]s.  Sighing, [Tux] cracks his fingers,
 stretches, and gets to work on escaping his container.
 
+![jail cell](jail-cell.jpg)
+
 His first step to escaping the [jail] is to get access to the old computing
 console left in his container.  Fortunately for [Tux], [Beastie] is a bit old
 school and prone to forgetting things, so the daemon wrote down the account
