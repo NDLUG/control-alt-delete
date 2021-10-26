@@ -17,12 +17,12 @@ class Solution {
 		moves[0] = 1;
 
     // DP
-		for(int i = 0; i < n; i++) {
+    for(int i = 0; i < n; i++) {
       for(int j = 1; j <= arr[i]; j++) {
         if(i + j >= n) continue;
         moves[i + j] = Math.Min(moves[i + j], moves[i] + 1);
-		  }
-	  }
+      }
+    }
 
 		return moves[n - 1];
   }
