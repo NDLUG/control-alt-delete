@@ -14,7 +14,7 @@ class Solution {
     }
 
     // First drink counts
-		moves[0] = 1;
+    moves[0] = 1;
 
     // DP
     for(int i = 0; i < n; i++) {
@@ -24,7 +24,7 @@ class Solution {
       }
     }
 
-		return moves[n - 1];
+    return moves[n - 1];
   }
 
   // Part B
@@ -42,17 +42,17 @@ class Solution {
     return -1;
   }
 
-	public static void Main(){
+  public static void Main(){
 
     // Read input
     string[] input = Console.ReadLine().Split(' ');
     int[] arr = Array.ConvertAll(input, int.Parse);
 
     // Part A
-		Console.WriteLine("Part A: " + minDrinks(arr));
+    Console.WriteLine("Part A: " + minDrinks(arr));
 
     // Part B: Sort in descending order
     Array.Sort(arr, delegate(int m, int n) { return n - m; });
     Console.WriteLine("Part B: " + minDrinksRearrange(arr));
-	}
+  }
 }
