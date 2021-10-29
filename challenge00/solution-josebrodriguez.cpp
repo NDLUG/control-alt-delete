@@ -1,6 +1,6 @@
-# solution-josebrodriguez.cpp
+// solution-josebrodriguez.cpp
 
-# Created by: Jose Rodriguez
+// Created by: Jose Rodriguez
 
 
 #include <sstream>
