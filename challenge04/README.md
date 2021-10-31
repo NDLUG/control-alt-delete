@@ -20,6 +20,8 @@ happens to be a map of the maze on the floor.  Before [entering the void],
 [Tux] decides to analyze the map an chart out the **shortest path** through the
 tunnels.
 
+![tunnel_prison_maze](tunnel-prison-maze.jpg)
+
 The map [Tux] found is full of symbols that are arranged like this:
 
     j.....w
